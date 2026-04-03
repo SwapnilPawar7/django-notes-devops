@@ -29,70 +29,12 @@ This project demonstrates an **end-to-end DevOps pipeline** for deploying a Djan
 
 ---
 
-## 🏗️ Architecture
-```
-Developer (Git Push)
-
-        ↓
-        
-GitHub Repository
-
-        ↓
-        
-GitHub Actions (CI/CD)
-
-        ↓
-        
-Build Docker Image
-
-        ↓
-        
-Push to Docker Hub
-
-        ↓
-        
-SSH into EC2
-
-        ↓
-        
-Pull Latest Image
-
-        ↓
-        
-Run Container
-
-        ↓
-        
-User Access via Public IP
-```
-
-### Component Breakdown
-
-| Component | Role | Technology |
-|-----------|------|------------|
-| **Version Control** | Code repository | GitHub |
-| **CI/CD Pipeline** | Automation | GitHub Actions |
-| **Container Registry** | Image storage | Docker Hub |
-| **Compute Service** | Hosting platform | AWS EC2 |
-| **Runtime** | Application execution | Docker Container |
-
----
-
 ## ⚙️ Tech Stack
-
-### Backend & Server
-- **Django** - Python web framework for backend logic
-- **Gunicorn** - WSGI HTTP server for Python
-- **Nginx** - Reverse proxy and load balancer
 
 ### DevOps & Infrastructure
 - **Docker** - Containerization platform
 - **GitHub Actions** - CI/CD automation
 - **AWS EC2** - Cloud hosting
-
-### Tools & Registries
-- **Docker Hub** - Container image registry
-- **Git** - Version control system
 
 ---
 
