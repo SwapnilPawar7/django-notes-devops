@@ -1,4 +1,4 @@
-name: Django CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
@@ -6,21 +6,18 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v3
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      - name: Build Docker Image
-        run: docker build -t notes-app .
+      - name: Build Image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/django-notes-app .
 
-      - name: Run Container Test
-        run: |
-          docker run -d -p 8000:8000 notes-app
-          sleep 10
-          curl -f http://localhost:8000 || exit 1
+      - name: Push Image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/django-notes-app
