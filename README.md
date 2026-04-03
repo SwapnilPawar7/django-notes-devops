@@ -32,21 +32,37 @@ This project demonstrates an **end-to-end DevOps pipeline** for deploying a Djan
 ## 🏗️ Architecture
 
 Developer (Git Push)
+
         ↓
+        
 GitHub Repository
+
         ↓
+        
 GitHub Actions (CI/CD)
+
         ↓
+        
 Build Docker Image
+
         ↓
+        
 Push to Docker Hub
+
         ↓
+        
 SSH into EC2
+
         ↓
+        
 Pull Latest Image
+
         ↓
+        
 Run Container
+
         ↓
+        
 User Access via Public IP
 
 
