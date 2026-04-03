@@ -21,6 +21,12 @@
 .env.test.local
 .env.production.local
 
+.env
+db.sqlite3
+__pycache__/
+*.pyc
+staticfiles/
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
