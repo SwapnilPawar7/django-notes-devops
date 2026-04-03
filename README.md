@@ -18,15 +18,6 @@
 
 This project demonstrates an **end-to-end DevOps pipeline** for deploying a Django-based application using modern containerization and CI/CD automation practices. Every code push automatically triggers a complete deployment cycle.
 
-### ✨ Key Highlights
-
-| Feature | Description |
-|---------|-------------|
-| ✅ **Zero-downtime deployments** | Seamless updates without service interruption |
-| ✅ **Production-ready** | Optimized for real-world deployment |
-| ✅ **Scalable architecture** | Designed for future growth |
-
----
 
 ## ⚙️ Tech Stack
 
@@ -36,6 +27,51 @@ This project demonstrates an **end-to-end DevOps pipeline** for deploying a Djan
 - **AWS EC2** - Cloud hosting
 
 ---
+
+---
+
+## Architecture (CI/CD + Infrastructure Combined)
+
+        ┌──────────────────────────┐
+        │        Developer         │
+        │     (Local Machine)      │
+        └────────────┬─────────────┘
+                     ↓
+        ┌──────────────────────────┐
+        │         GitHub           │
+        │   Source Code Repo       │
+        └────────────┬─────────────┘
+                     ↓
+        ┌──────────────────────────┐
+        │    GitHub Actions CI     │
+        │  - Build Docker Image    │
+        │  - Push to Registry      │
+        └────────────┬─────────────┘
+                     ↓
+        ┌──────────────────────────┐
+        │      Docker Hub          │
+        │   Image Registry         │
+        └────────────┬─────────────┘
+                     ↓
+        ┌──────────────────────────┐
+        │      AWS EC2 Server      │
+        │                          │
+        │  ┌────────────────────┐  │
+        │  │   Docker Engine    │  │
+        │  │                    │  │
+        │  │  ┌──────────────┐  │  │
+        │  │  │ Django App   │  │  │
+        │  │  │ (Gunicorn)   │  │  │
+        │  │  └──────┬───────┘  │  │
+        │  │         ↓          │  │
+        │  │     Database       │  │
+        │  │                    │  │
+        │  └────────────────────┘  │
+        │           ↑              │
+        │        Nginx             │
+        └──────────┬───────────────┘
+                   ↓
+             End Users Access App
 
 ## 🔄 CI/CD Pipeline Workflow
 
@@ -49,32 +85,7 @@ This project demonstrates an **end-to-end DevOps pipeline** for deploying a Djan
 | **Stage 4** | 🚀 Deploy | EC2 instance pulls and runs the new container |
 
 
-### Detailed Steps
-
-| Step | Action | Status Indicator |
-|------|--------|------------------|
-| 1 | Code pushed to GitHub | 🟢 Triggered |
-| 2 | GitHub Actions workflow starts | 🟡 Running |
-| 3 | Docker image built with dependencies | 🟡 Building |
-| 4 | Image pushed to Docker Hub | 🟡 Pushing |
-| 5 | SSH connection to EC2 established | 🟡 Connecting |
-| 6 | Latest image pulled from registry | 🟡 Pulling |
-| 7 | Container restarted with new image | 🟡 Deploying |
-
 ---
-
-## 🐳 Docker Usage
-
-### Basic Commands
-
-| Command | Purpose |
-|---------|---------|
-| `docker build -t django-notes-app .` | Build Docker image |
-| `docker run -d -p 8000:8000 django-notes-app` | Run container in background |
-| `docker ps` | List running containers |
-| `docker logs django-notes-app` | View container logs |
-| `docker stop django-notes-app` | Stop running container |
-| `docker rm django-notes-app` | Remove container |
 
 ### Complete Workflow Example
 
