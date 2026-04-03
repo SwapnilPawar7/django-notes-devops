@@ -10,8 +10,6 @@
   
 [![Deployment Status](https://img.shields.io/badge/Deployment-Active-success?style=flat-square)](https://github.com/SwapnilPawar7/django-notes-devops)
 [![Docker Pulls](https://img.shields.io/badge/Docker%20Pulls-Automated-blue?style=flat-square)](https://hub.docker.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
   
 </div>
 
