@@ -42,15 +42,12 @@ This project demonstrates an **end-to-end DevOps pipeline** for deploying a Djan
 
 ### Pipeline Stages
 
-┌─────────────────────────────────────────────────────────────────────┐
-│ CI/CD PIPELINE FLOW │
-├──────────────┬──────────────────┬──────────────────┬────────────────┤
-│ Stage 1 │ Stage 2 │ Stage 3 │ Stage 4 │
-├──────────────┼──────────────────┼──────────────────┼────────────────┤
-│ 📝 Code │ 🔨 Build │ 📤 Push │ 🚀 Deploy │
-│ Push to │ Docker Image │ to Docker │ to EC2 │
-│ GitHub │ with Dependencies│ Hub Registry │ Instance │
-└──────────────┴──────────────────┴──────────────────┴────────────────┘
+| Stage | Action | Description |
+|-------|--------|-------------|
+| **Stage 1** | 📝 Code Push | Developer pushes code to GitHub repository |
+| **Stage 2** | 🔨 Build | GitHub Actions builds Docker image with dependencies |
+| **Stage 3** | 📤 Push | Image is pushed to Docker Hub registry |
+| **Stage 4** | 🚀 Deploy | EC2 instance pulls and runs the new container |
 
 
 ### Detailed Steps
