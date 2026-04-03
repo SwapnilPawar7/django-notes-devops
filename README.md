@@ -23,7 +23,6 @@ This project demonstrates an **end-to-end DevOps pipeline** for deploying a Djan
 | Feature | Description |
 |---------|-------------|
 | ✅ **Zero-downtime deployments** | Seamless updates without service interruption |
-| ✅ **Automated testing** | Continuous integration with every commit |
 | ✅ **Production-ready** | Optimized for real-world deployment |
 | ✅ **Scalable architecture** | Designed for future growth |
 
@@ -138,14 +137,7 @@ python manage.py runserver
 # Step 8: Open browser to http://localhost:8000
 ```
 
-### 📊 Project Dashboard
-Current Status
-Metric	Status	Details
-CI/CD Pipeline	🟢 Operational	All checks passing
-Deployment	🟢 Active	Running on EC2
-Documentation	🟢 Complete	README + Wiki
-Test Coverage	🟡 Partial	Unit tests in progress
-Monitoring	🔴 Not started	Planned for Phase 3
+
 
 
 
