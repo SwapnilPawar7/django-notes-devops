@@ -21,3 +21,20 @@ jobs:
 
       - name: Push Image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/django-notes-app
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker pull ${{ secrets.DOCKER_USERNAME }}/django-notes-app
+            docker stop notes-app || true
+            docker rm notes-app || true
+            docker run -d -p 80:8000 -v notes_data:/app/data --name notes-app ${{ secrets.DOCKER_USERNAME }}/django-notes-app
