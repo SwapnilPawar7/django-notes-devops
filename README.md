@@ -60,7 +60,6 @@ This project demonstrates an **end-to-end DevOps pipeline** for deploying a Djan
 | 5 | SSH connection to EC2 established | 🟡 Connecting |
 | 6 | Latest image pulled from registry | 🟡 Pulling |
 | 7 | Container restarted with new image | 🟡 Deploying |
-| 8 | Health check verification | 🟢 Complete |
 
 ---
 
