@@ -1,0 +1,26 @@
+name: Django CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Image
+        run: docker build -t notes-app .
+
+      - name: Run Container Test
+        run: |
+          docker run -d -p 8000:8000 notes-app
+          sleep 10
+          curl -f http://localhost:8000 || exit 1
