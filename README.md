@@ -30,7 +30,7 @@ This project demonstrates an **end-to-end DevOps pipeline** for deploying a Djan
 ---
 
 ## 🏗️ Architecture
-
+```
 Developer (Git Push)
 
         ↓
@@ -64,7 +64,7 @@ Run Container
         ↓
         
 User Access via Public IP
-
+```
 
 ### Component Breakdown
 
