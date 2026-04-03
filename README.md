@@ -6,7 +6,6 @@
 ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker)
 ![AWS](https://img.shields.io/badge/AWS-EC2-FF9900?style=for-the-badge&logo=amazonaws)
 ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI%2FCD-2088FF?style=for-the-badge&logo=githubactions)
-![Django](https://img.shields.io/badge/Django-4.2-092E20?style=for-the-badge&logo=django)
   
 [![Deployment Status](https://img.shields.io/badge/Deployment-Active-success?style=flat-square)](https://github.com/SwapnilPawar7/django-notes-devops)
 [![Docker Pulls](https://img.shields.io/badge/Docker%20Pulls-Automated-blue?style=flat-square)](https://hub.docker.com/)
@@ -35,7 +34,7 @@ This project demonstrates an **end-to-end DevOps pipeline** for deploying a Djan
 ### System Flow
 
 ┌─────────┐ ┌──────────────┐ ┌──────────┐ ┌─────┐ ┌─────────────┐
-│ GitHub │───▶│ GitHub │───▶│ Docker │───▶│ EC2 │───▶│ Docker │
+│ Git │───▶│ GitHub │───▶│ Docker │───▶│ EC2 │───▶│ Docker │
 │ Code │ │ Actions │ │ Hub │ │ │ │ Container │
 └─────────┘ └──────────────┘ └──────────┘ └─────┘ └─────────────┘
 
