@@ -169,3 +169,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+# Current (too restrictive)
+ALLOWED_HOSTS = []  # or ['localhost', '127.0.0.1']
+
+# Change to:
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'django_cont', 'nginx_cont', '*']
+
+# For development only - allow all hosts
+ALLOWED_HOSTS = ['*']

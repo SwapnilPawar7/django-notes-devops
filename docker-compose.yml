@@ -18,6 +18,9 @@ services:
       context: .
     image: django_app
     container_name: "django_cont"
+    environment:
+      - DEBUG=1
+      - ALLOWED_HOSTS=localhost,127.0.0.1,django_cont,nginx_cont,*
     ports:
       - "8000:8000"
     command: sh -c "python manage.py migrate --noinput && gunicorn notesapp.wsgi --bind 0.0.0.0:8000"
