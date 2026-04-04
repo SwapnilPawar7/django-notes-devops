@@ -22,7 +22,7 @@ jobs:
       - name: Push Image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/django-notes-app
 
-deploy:
+  deploy:
   needs: build-and-push
   runs-on: ubuntu-latest
   steps:
