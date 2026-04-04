@@ -22,19 +22,41 @@ jobs:
       - name: Push Image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/django-notes-app
 
-  deploy:
-    needs: build-and-push
-    runs-on: ubuntu-latest
+deploy:
+  needs: build-and-push
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4          # ← add this so compose file is available
 
-    steps:
-      - name: Deploy to EC2
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/django-notes-app
-            docker stop notes-app || true
-            docker rm notes-app || true
-            docker run -d -p 80:8000 -v notes_data:/app/data --name notes-app ${{ secrets.DOCKER_USERNAME }}/django-notes-app
+    - name: Copy compose file to EC2
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        source: "docker-compose.yml,nginx/"   # copy compose + nginx config
+        target: "/home/ubuntu/app"
+
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          cd /home/ubuntu/app
+          
+          # Create .env if it doesn't exist yet
+          if [ ! -f .env ]; then
+            echo "DB_ENGINE=mysql" > .env
+            echo "DB_NAME=test_db" >> .env
+            echo "DB_USER=root" >> .env
+            echo "DB_PASSWORD=root" >> .env
+            echo "DB_PORT=3306" >> .env
+            echo "DB_HOST=db" >> .env
+          fi
+          
+          # Pull latest app image and restart stack
+          docker compose pull django_app
+          docker compose up -d --remove-orphans
