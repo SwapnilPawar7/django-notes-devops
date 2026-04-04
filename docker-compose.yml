@@ -1,9 +1,6 @@
-version: "3.8"
-
 services:
   nginx:
     build: ./nginx
-    image: nginx
     container_name: "nginx_cont"
     ports:
       - "80:80"
@@ -14,9 +11,7 @@ services:
       - notes-app-nw
 
   django_app:
-    build:
-      context: .
-    image: django_app
+    image: swapnilpawar7/django-notes-app    # ← your Docker Hub image
     container_name: "django_cont"
     ports:
       - "8000:8000"
@@ -25,14 +20,8 @@ services:
       - ".env"
     depends_on:
       db:
-        condition: service_healthy    # ← mapping format
+        condition: service_healthy
     restart: always
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8000/admin || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
     networks:
       - notes-app-nw
 

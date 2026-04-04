@@ -49,5 +49,5 @@ jobs:
               echo "DB_HOST=db" >> .env
             fi
 
-            docker compose pull django_app
+            docker pull ${{ secrets.DOCKER_USERNAME }}/django-notes-app
             docker compose up -d --remove-orphans
